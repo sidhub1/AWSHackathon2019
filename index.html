@@ -31,8 +31,20 @@
 </script> -->
 <script>
 	function showFeed(){
+		//list of posts
+		//		title
+
+		//    Message
+		//    list of answers
+		//for each post in posts:
+		//   addPost(document.createElement("div"), post.title, post.message, post.answers)
 		addPost(document.createElement("div"));
 		addPost(document.createElement("div"));
+		addPost(document.createElement("div"), title, message, answers);
+	}
+
+	function search(){
+
 	}
 							//<div class="card text-center">
 							 // <div class="card-body">
@@ -41,26 +53,9 @@
 							  //<div class="card-footer">
 							    //2 days ago
 							  //</div>
-							  //<a href="#" class="btn btn-primary">Go somewhere</a> 
+							  //<a href="#" class="btn btn-primary">Go somewhere</a>
 							//</div>
 	function addPost(d){
-
-		// $('#homecol').append("<div id = "post" class="card text-center"></div>");
-		// $('#post').append("<div id = "textbody" class="card-body"></div>");
-		// $('#textbody').append("<p id = "questionText" class="card-text">WHY THOUGH</p>");
-		// $('#questionText').append("<div id="answersBody" class="card-body"></div>");
-		// //loop through answers for this
-		// $('#answersBody').append("<div name="answer" class="card-footer">CAUSE YES</div>");
-
-
-
-
-
-
-
-
-
-
 		var post = document.createElement("div");
 		post.className = "card";
 
@@ -169,7 +164,7 @@
 						<div id="centersearch" class="newsletter_form_container align-items-end">
 							<form action="#" class="newsletter_form">
 								<input type="email" class="newsletter_input" placeholder="Learn to teach networking, protocols, pen-testing, etc" required="required">
-								<button class="newsletter_button">Search</button>
+								<button id="search_button" class="newsletter_button">Search</button>
 							</form>
 						</div>
 					</div>
@@ -214,9 +209,9 @@
 									yes
 									</div>
 								</div>
-								
+
 							</div>
-							
+
 							<div class="card-footer"><input class="input--style-5" type="text" id="rep" placeholder="Your answer?" style="width: 100%;">
 								<button type="button small" class="btn btn-success btn-sm">Submit Your Answer</button>
 							</div>
