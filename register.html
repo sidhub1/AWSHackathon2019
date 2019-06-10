@@ -84,6 +84,14 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-row m-b-55">
+                            <div class="name">Password</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input class="input--style-5" type="text" name="password" id="password">
+                                </div>
+                            </div>
+                        </div>
                         <div>
                             <button class="btn btn--radius-2 btn--red" type="submit" onclick="postUser()">Register</button>
                         </div>
@@ -103,8 +111,11 @@
     <!-- Main JS-->
     <script src="js/global.js"></script>
     <script>
-
-    var lambda = new AWS.Lambda({region: "us-east-1", accessKeyId: "AKIASCBCIPJE5EKC4P4Y", secretAccessKey: "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", apiVersion: '2015-03-31'});
+    AWS.config.region = 'us-east-1'; // Region
+    AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+        IdentityPoolId: 'us-east-1:e8c99fdb-a0d2-4ed8-8277-8480f066a40c',
+    });
+    var lambda = new AWS.Lambda({apiVersion: '2015-03-31'});
 
     function postUser(){
         var fname = document.getElementById("first_name").value;
@@ -112,14 +123,24 @@
         var org = document.getElementById("organization").value;
         var email = document.getElementById("email").value;
         var role = document.getElementById("role").value;
+        var password = document.getElementById("password").value;
 
-        console.log("h");
+        var jsonData = {
+            Firstname: fname,
+            Lastname: lname,
+            Organization: org,
+            Email: email,
+            Role: role,
+            Password: password
+        };
 
         var pullParams = {
           FunctionName : 'test',
           InvocationType : 'RequestResponse',
-          LogType : 'None'
+          LogType : 'None',
+          Payload: jsonData
         };
+
 
         lambda.invoke(pullParams, function(error, data) {
           if (error) {
