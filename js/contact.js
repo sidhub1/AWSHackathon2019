@@ -12,8 +12,7 @@
 
 ******************************/
 /// <reference types="aws-sdk" />
-var AWS = require('aws-sdk');
-var lambda = new AWS.Lambda({apiVersion: '2015-03-31'});
+
 
 $(document).ready(function()
 {
@@ -119,25 +118,6 @@ $(document).ready(function()
 	{
 		menu.removeClass('active');
 		menuActive = false;
-	}
-	function postQuestion(){
-		var subject = document.getElementById("qSubject").value;
-		var message = document.getElementById("qMessage").value;
-
-		var pullParams = {
-  FunctionName : 'testFunc',
-  InvocationType : 'RequestResponse',
-  LogType : 'None'
-};
-
-		lambda.invoke(pullParams, function(error, data) {
-  if (error) {
-    prompt(error);
-  } else {
-    pullResults = JSON.parse(data.Payload);
-  }
-});
-		//var div = document.createElement("div");
 	}
 
     /*

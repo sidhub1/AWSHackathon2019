@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css" href="plugins/rangeslider.js-2.3.0/rangeslider.css">
 <link rel="stylesheet" type="text/css" href="styles/contact.css">
 <link rel="stylesheet" type="text/css" href="styles/contact_responsive.css">
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.471.0.min.js"></script>
 </head>
 <body>
 
@@ -84,7 +85,33 @@
 		</div>
 	</div>
 
+<script>
 
+var lambda = new AWS.Lambda({region: "us-east-1", accessKeyId: "AKIASCBCIPJE3XVHUP4F", secretAccessKey: "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", apiVersion: '2015-03-31'});
+
+function postQuestion(){
+
+
+	var subject = document.getElementById("qSubject").value;
+	var message = document.getElementById("qMessage").value;
+
+	var pullParams = {
+		FunctionName : 'test',
+		InvocationType : 'RequestResponse',
+		LogType : 'None'
+	};
+
+	lambda.invoke(pullParams, function(error, data) {
+		if (error) {
+			prompt(error);
+		} else {
+			pullResults = JSON.parse(data.Payload);
+			console.log(data);
+		}
+	});
+}
+
+</script>
 
 
 <script src="js/jquery-3.2.1.min.js"></script>
