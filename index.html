@@ -45,12 +45,7 @@
 							//</div>
 	function addPost(d){
 
-		// $('#homecol').append("<div id = "post" class="card text-center"></div>");
-		// $('#post').append("<div id = "textbody" class="card-body"></div>");
-		// $('#textbody').append("<p id = "questionText" class="card-text">WHY THOUGH</p>");
-		// $('#questionText').append("<div id="answersBody" class="card-body"></div>");
-		// //loop through answers for this
-		// $('#answersBody').append("<div name="answer" class="card-footer">CAUSE YES</div>");
+		 $('#homecol').append("<div id = "post" class="card text-center"></div>");
 
 
 
@@ -200,20 +195,19 @@
 
 					<div class="card">
 						<div class="card-body">
-							<p class="card-text">why?</p>
+							<p class="card-text">How to Prevent Ping of Death Attackds on Bluetooth Low Energy Devices?</p>
 						</div>
 						<div class="card-body">
 							<div class="card-footer">
 								<div style="display:inline-block" class="js-voting-container grid fd-column ai-stretch gs4 fc-black-200" data-post-id="56533066">
 
-							        <input height="10" width="10" type="image" src="images/greenarrow.png" name="saveForm" class="btTxt submit" id="saveForm" />
-							        <div class="js-vote-count grid--cell fc-black-500 fs-title grid fd-column ai-center" itemprop="upvoteCount" data-value="0">0</div>
-							        <input height="10" width="10" type="image" src="images/redarrow.png" name="saveForm" class="btTxt submit" id="saveForm" />
-
-							        <div style="display:inline-block;padding-left: 10px; height: 100%; position: absolute;" id = "answer" class="text-center">
-									yes
-									</div>
+							        <input height="10" width="10" type="image" src="images/greenarrow.png" name="saveForm" class="btTxt submit" id="saveForm" onclick="increment()"/>
+							        <div class="js-vote-count grid--cell fc-black-500 fs-title grid fd-column ai-center" itemprop="upvoteCount" data-value="0" id = "count">0</div>
+							        <input height="10" width="10" type="image" src="images/redarrow.png" name="saveForm" class="btTxt submit" id="saveForm" onclick="decrement()"/>
 								</div>
+								<div style="display:inline-block;padding-left: 10px; height: 100%;" id = "answer" class="text-center">
+									A combination of Firewalls, Routers, Intrusion Detection Systems and Updates can take you a long way.
+									</div>
 								
 							</div>
 							
