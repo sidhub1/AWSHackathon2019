@@ -126,19 +126,19 @@
         var password = document.getElementById("password").value;
 
         var jsonData = {
-            Firstname: fname,
-            Lastname: lname,
-            Organization: org,
-            Email: email,
-            Role: role,
-            Password: password
+            "Firstname": fname,
+            "Lastname": lname,
+            "Organization": org,
+            "Email": email,
+            "Role": role,
+            "Password": password
         };
 
         var pullParams = {
           FunctionName : 'test',
           InvocationType : 'RequestResponse',
           LogType : 'None',
-          Payload: jsonData
+          Payload: JSON.stringify(jsonData)
         };
 
 

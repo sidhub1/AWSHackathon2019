@@ -14,20 +14,109 @@
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/responsive.css">
 <script src="https://sdk.amazonaws.com/js/aws-sdk-2.471.0.min.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+
+<!-- <script>
+	$document.ready(){
+
+		$('#homecol').append("<div id = "post" class="card text-center"></div>");
+		$('#post').append("<div id = "textbody" class="card-body"></div>");
+		$('#textbody').append("<p id = "questionText" class="card-text">WHY THOUGH</p>");
+		$('#questionText').append("<div id="answersBody" class="card-body"></div>");
+		//loop through answers for this
+		$('#answersBody').append("<div name="answer" class="card-footer">CAUSE YES</div>");
+
+
+	}
+</script> -->
 <script>
 	function showFeed(){
 		addPost(document.createElement("div"));
+		addPost(document.createElement("div"));
 	}
+							//<div class="card text-center">
+							 // <div class="card-body">
+							   // <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+							  //</div>
+							  //<div class="card-footer">
+							    //2 days ago
+							  //</div>
+							  //<a href="#" class="btn btn-primary">Go somewhere</a> 
+							//</div>
 	function addPost(d){
-		d.style.width="1000px";
-		d.style.background="#F0F0F0";
-		var text = "Q: How to present Linux to class?".bold();
-		text= text + "\n"  +" A: hello";
-		text = text.replace(/\n/g, "<br />");
-		d.innerHTML=text;
-		//d.innerHTML.append("	A: Test Answer");
-		d.style.color="black"
-		document.getElementById("homecol").appendChild(d);
+
+		// $('#homecol').append("<div id = "post" class="card text-center"></div>");
+		// $('#post').append("<div id = "textbody" class="card-body"></div>");
+		// $('#textbody').append("<p id = "questionText" class="card-text">WHY THOUGH</p>");
+		// $('#questionText').append("<div id="answersBody" class="card-body"></div>");
+		// //loop through answers for this
+		// $('#answersBody').append("<div name="answer" class="card-footer">CAUSE YES</div>");
+
+
+
+
+
+
+
+
+
+
+		var post = document.createElement("div");
+		post.className = "card";
+
+		var card = document.createElement("div");
+		card.className = "card-body";
+
+		var ques = document.createElement("p");
+		ques.className = "card-text";
+		ques.innerHTML = "why?"
+
+		card.appendChild(ques);
+
+		var answers = document.createElement("div");
+		answers.className = "card-body";
+
+		var answer = document.createElement("div");
+		answer.className = "card-footer";
+
+		var upvote = document.createElement("button");
+		upvote.type = "button";
+		upvote.className = "btn btn-info btn-sm";
+		upvote.innerHTML = "100"; //REPLACE WITH DATA FROM DYNAMO
+
+		answer.innerHTML = "yes";
+
+		answers.appendChild(answer);
+
+		//THIS IS THE REPLY ANSWER
+		var reply = document.createElement("div");
+		reply.className = "card-footer";
+
+		var rep = document.createElement("input");
+		rep.className = "input--style-5";
+		rep.type = "text"
+		rep.id = "rep";
+		rep.placeholder = "Your answer?";
+		rep.style.width = "100%";
+
+		reply.appendChild(rep);
+
+		var sub = document.createElement("button");
+		sub.type = "button small";
+		sub.className = "btn btn-success btn-sm";
+		sub.innerHTML = "Submit Your Answer";
+
+		reply.appendChild(sub);
+
+		answers.appendChild(reply);
+		//<input class="input--style-5" type="text" name="first_name" id="first_name">
+		//<a href="#" class="btn btn-primary">Go somewhere</a>
+
+		post.appendChild(card);
+		post.appendChild(answers);
+
+		document.getElementById("homecol").appendChild(post);
+		document.getElementById("homecol").appendChild(document.createElement("br"));
 	}
 </script>
 </head>
@@ -103,18 +192,34 @@
 			<div class="row recent_row">
 				<div id="homecol" class="col">
 					<div class="recent_slider_container">
-						<div class="owl-carousel owl-theme recent_slider">
-
-
-
-						</div>
-
 						<div class="recent_slider_nav_container d-flex flex-row align-items-start justify-content-start">
 							<div class="recent_slider_nav recent_slider_prev"><i class="fa fa-chevron-left" aria-hidden="true"></i></div>
 							<div class="recent_slider_nav recent_slider_next"><i class="fa fa-chevron-right" aria-hidden="true"></i></div>
 						</div>
 					</div>
+
+					<div class="card">
+						<div class="card-body">
+							<p class="card-text">why?</p>
+						</div>
+						<div class="card-body">
+							<div class="card-footer">yes</div>
+							<div class="js-voting-container grid fd-column ai-stretch gs4 fc-black-200" data-post-id="56533066">
+        <button class="js-vote-up-btn grid--cell s-btn s-btn__unset c-pointer" title="This question shows research effort; it is useful and clear" aria-pressed="false" aria-label="up vote" data-selected-classes="fc-theme-primary"><svg aria-hidden="true" class="svg-icon m0 iconArrowUpLg" width="36" height="36" viewBox="0 0 36 36"><path d="M2 26h32L18 10 2 26z"></path></svg></button>
+        <div class="js-vote-count grid--cell fc-black-500 fs-title grid fd-column ai-center" itemprop="upvoteCount" data-value="0">0</div>
+        <button class="js-vote-down-btn grid--cell s-btn s-btn__unset c-pointer" title="This question does not show any research effort; it is unclear or not useful" aria-pressed="false" aria-label="down vote" data-selected-classes="fc-theme-primary"><svg aria-hidden="true" class="svg-icon m0 iconArrowDownLg" width="36" height="36" viewBox="0 0 36 36"><path d="M2 10h32L18 26 2 10z"></path></svg></button>
+
+
+</div>
+							<div class="card-footer"><input class="input--style-5" type="text" id="rep" placeholder="Your answer?" style="width: 100%;">
+								<button type="button small" class="btn btn-success btn-sm">Submit Your Answer</button>
+							</div>
+						</div>
+					</div>
+
+
 				</div>
+
 			</div>
 		</div>
 	</div>
@@ -123,7 +228,7 @@
 
 
 
-<script src="js/jquery-3.2.1.min.js"></script>
+
 <script src="styles/bootstrap4/popper.js"></script>
 <script src="styles/bootstrap4/bootstrap.min.js"></script>
 <script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
