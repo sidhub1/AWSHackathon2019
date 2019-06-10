@@ -3,6 +3,12 @@
 
 <head>
     <!-- Required meta tags-->
+
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.471.0.min.js"></script>
+
+
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Colorlib Templates">
@@ -41,13 +47,13 @@
                                 <div class="row row-space">
                                     <div class="col-2">
                                         <div class="input-group-desc">
-                                            <input class="input--style-5" type="text" name="first_name">
+                                            <input class="input--style-5" type="text" name="first_name" id="first_name">
                                             <label class="label--desc">first name</label>
                                         </div>
                                     </div>
                                     <div class="col-2">
                                         <div class="input-group-desc">
-                                            <input class="input--style-5" type="text" name="last_name">
+                                            <input class="input--style-5" type="text" name="last_name" id="last_name">
                                             <label class="label--desc">last name</label>
                                         </div>
                                     </div>
@@ -58,7 +64,7 @@
                             <div class="name">Organization</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="text" name="company">
+                                    <input class="input--style-5" type="text" name="organization" id="organization">
                                 </div>
                             </div>
                         </div>
@@ -66,7 +72,7 @@
                             <div class="name">Email</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="email" name="email">
+                                    <input class="input--style-5" type="email" name="email" id="email">
                                 </div>
                             </div>
                         </div>
@@ -74,12 +80,12 @@
                             <div class="name">Role</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="text" name="company">
+                                    <input class="input--style-5" type="text" name="role" id="role">
                                 </div>
                             </div>
                         </div>
                         <div>
-                            <button class="btn btn--radius-2 btn--red" type="submit">Register</button>
+                            <button class="btn btn--radius-2 btn--red" type="submit" onclick="postUser()">Register</button>
                         </div>
                     </form>
                 </div>
@@ -96,6 +102,37 @@
 
     <!-- Main JS-->
     <script src="js/global.js"></script>
+    <script>
+
+    var lambda = new AWS.Lambda({region: "us-east-1", accessKeyId: "AKIASCBCIPJE5EKC4P4Y", secretAccessKey: "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", apiVersion: '2015-03-31'});
+
+    function postUser(){
+        var fname = document.getElementById("first_name").value;
+        var lname = document.getElementById("last_name").value;
+        var org = document.getElementById("organization").value;
+        var email = document.getElementById("email").value;
+        var role = document.getElementById("role").value;
+
+        console.log("h");
+
+        var pullParams = {
+          FunctionName : 'test',
+          InvocationType : 'RequestResponse',
+          LogType : 'None'
+        };
+
+        lambda.invoke(pullParams, function(error, data) {
+          if (error) {
+            prompt(error);
+          } else {
+            pullResults = JSON.parse(data.Payload);
+            console.log(data);
+          }
+        });
+                //var div = document.createElement("div");
+    }
+
+    </script>
 
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 
