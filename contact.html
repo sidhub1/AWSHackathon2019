@@ -87,18 +87,28 @@
 
 <script>
 
-var lambda = new AWS.Lambda({region: "us-east-1", accessKeyId: "AKIASCBCIPJE3XVHUP4F", secretAccessKey: "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", apiVersion: '2015-03-31'});
 
+AWS.config.region = 'us-east-1'; // Region
+AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: 'us-east-1:e8c99fdb-a0d2-4ed8-8277-8480f066a40c',
+});
+var lambda = new AWS.Lambda({region: "us-east-1", apiVersion: '2015-03-31'});
 function postQuestion(){
 
 
 	var subject = document.getElementById("qSubject").value;
 	var message = document.getElementById("qMessage").value;
 
+	var jsonData = {
+		Subject: subject,
+		Message: message
+	};
+
 	var pullParams = {
 		FunctionName : 'test',
 		InvocationType : 'RequestResponse',
-		LogType : 'None'
+		LogType : 'None',
+		Payload: jsonData
 	};
 
 	lambda.invoke(pullParams, function(error, data) {
@@ -110,6 +120,8 @@ function postQuestion(){
 		}
 	});
 	var div = document.createElement("div");
+	div.style.width="100px";
+	div.style.background="blue";
 
 	document.getElementById("homecol").appendChild(div);
 }
