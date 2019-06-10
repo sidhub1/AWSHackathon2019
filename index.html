@@ -14,8 +14,24 @@
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/responsive.css">
 <script src="https://sdk.amazonaws.com/js/aws-sdk-2.471.0.min.js"></script>
+<script>
+	function showFeed(){
+		addPost(document.createElement("div"));
+	}
+	function addPost(d){
+		d.style.width="1000px";
+		d.style.background="#F0F0F0";
+		var text = "Q: How to present Linux to class?".bold();
+		text= text + "\n"  +" A: hello";
+		text = text.replace(/\n/g, "<br />");
+		d.innerHTML=text;
+		//d.innerHTML.append("	A: Test Answer");
+		d.style.color="black"
+		document.getElementById("homecol").appendChild(d);
+	}
+</script>
 </head>
-<body>
+<body onload="showFeed()">
 
 <div class="super_container">
 

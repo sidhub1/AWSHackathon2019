@@ -99,16 +99,18 @@ function postQuestion(){
 	var subject = document.getElementById("qSubject").value;
 	var message = document.getElementById("qMessage").value;
 
+	console.log(subject);
+
 	var jsonData = {
-		Subject: subject,
-		Message: message
+		title: subject,
+		description: message
 	};
 
 	var pullParams = {
-		FunctionName : 'test',
+		FunctionName : 'putUser',
 		InvocationType : 'RequestResponse',
 		LogType : 'None',
-		Payload: jsonData
+		Payload: JSON.stringify(jsonData)
 	};
 
 	lambda.invoke(pullParams, function(error, data) {
