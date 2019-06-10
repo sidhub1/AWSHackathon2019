@@ -27,6 +27,7 @@
         $('#login100-form-btn').on('click', function() {
             var emailtemp = document.getElementById(EmailInput);
             StoredEmail = emailtemp;
+            window.location.replace("index.html")
 
         })
 
